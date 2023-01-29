@@ -15,14 +15,14 @@ import javax.validation.constraints.NotEmpty;
 public class Recipe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)     /////////////////////////////
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "preparation")
     private String preparation;
 
     @Column(name = "status")
-   // @Enumerated(value = EnumType.STRING)
+//    @Enumerated(value = EnumType.ORDINAL)
     private String status;                            //StatusRecipe
 
     @Column(name = "note")  //nullable = false

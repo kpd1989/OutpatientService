@@ -64,6 +64,11 @@ li {
     right: 5px;
 }
 
+div.row-recipe {
+    padding-left: 20px;
+    position: center;
+}
+
 .loginName {
     padding-right: 5px;
 }

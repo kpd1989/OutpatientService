@@ -38,7 +38,7 @@ public class PatientCardPageController {
 
         RecipeDto currentRecipe = recipeService.getByCardId(cardId)
                 .orElse(new RecipeDto());
-//                .orElseThrow(() -> new IllegalArgumentException("Non existed patient card"));
+        System.out.println(currentRecipe);
         model.addAttribute("recipe", currentRecipe);
         return "card/card";
     }
@@ -48,7 +48,6 @@ public class PatientCardPageController {
         patientCardService.save(card);
 
         if (card.getRecommendations().equals("1")){
-            System.out.println(recipe);
             recipeService.save(recipe);
         }
         return "redirect:/cards";

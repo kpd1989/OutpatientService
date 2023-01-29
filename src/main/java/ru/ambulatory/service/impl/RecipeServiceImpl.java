@@ -62,7 +62,6 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Transactional
     public RecipeDto save(RecipeDto recipe) {
-       // patientCardMapper.toDto(patientCardRepository.save(patientCardMapper.toEntity(recipe.getPatientCard())));
         return recipeMapper.toDto(recipeRepository.save(recipeMapper.toEntity(recipe)));
     }
 
