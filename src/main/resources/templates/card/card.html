@@ -168,25 +168,27 @@
         </select>
     </div>
 
-    <div class="row" th:object="${recipe}">
+    <div class="row-recipe" th:object="${recipe}">
         <label for="id-recipe-edit">№ рецепта</label>
-        <input id="id-recipe-edit" name="recipe.id" type="text" th:value="*{id}"/>
+        <input id="id-recipe-edit" name="id" type="text" th:value="*{id}" readonly="readonly"/>
 
         <label for="status-recipe-edit">Статус выдачи</label>
         <select id="status-recipe-edit" name="status">
-            <option th:value="*{status}"><span th:text="#{*{status}+st}"></span> </option>
+            <option th:if="*{status != null}" th:value="*{status}"><span th:text="#{*{status}+st}"></span> </option>
             <option value="0">Не выдано</option>
             <option value="1">Выдано</option>
         </select>
     </div>
 
-    <div class="row" th:object="${recipe}">
+    <div class="row-recipe" th:object="${recipe}">
 
         <label for="preparation-recipe-edit">Препараты</label>
-        <input id="preparation-recipe-edit" name="recipe.preparation" type="text" th:value="*{preparation}"/>
+        <input id="preparation-recipe-edit" name="preparation" type="text" th:value="*{preparation}"/>
 
         <label for="note-recipe-edit">Примечание</label>
-        <input id="note-recipe-edit" name="recipe.note" type="text" th:value="*{note}" value="net"/>
+        <input id="note-recipe-edit" name="note" type="text" th:value="*{note}" />
+
+        <input id="card-id-edit" name="patientCard.id" type="hidden" th:object="${patientCard}" th:value="*{id}"/>
     </div>
 
     <div class="row">
@@ -207,7 +209,6 @@
             <option value="1">Согласовано</option>
             <option value="2">Отклонено</option>
         </select>
-        <!--        <input id="chief-edit-input" name="signatureChief" type="text" th:value="*{signatureChief}"  maxlength="10" value="Art"/>-->
     </div>
 
     <div class="row">

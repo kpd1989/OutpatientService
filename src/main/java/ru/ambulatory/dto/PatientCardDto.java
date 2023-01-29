@@ -33,8 +33,6 @@ public class PatientCardDto {
 
     private String signatureChief;         // SignatureChief
 
-   // private RecipeDto recipeDto;
-
     public String getIdStr() {
         return String.format("card_%s", id);
     }
