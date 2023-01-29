@@ -1,0 +1,59 @@
+#spring:
+#  application:
+#    name: OutpatientService
+#  main:
+#    banner-mode: 'OFF'
+#  datasource:
+#    url: jdbc:mysql://localhost:3307/db_ambulance
+#    username: user
+#    password: password
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#  messages:
+#    basename: messages # i18n.messages
+#  liquibase:
+#    change-log: 'classpath:db/migration/changeLog.xml'
+#    enabled: true
+spring:
+  application:
+    name: OutpatientService
+  main:
+    banner-mode: 'OFF'
+  #hw-6
+  datasource:
+    url: jdbc:mysql://localhost:3307/db_ambulance
+    username: user
+    password: password
+    driverClassName: com.mysql.cj.jdbc.Driver
+  #hw10
+  jpa:
+    #    generate-ddl: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    #    show-sql: true
+    #    properties:
+    #      hibernate:
+    #        default_schema: db
+    #        format_sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  messages:
+    basename: messages # i18n.messages
+  #hw7
+  liquibase:
+    change-log: 'classpath:db/migration/changeLog.xml'
+    enabled: true
+
+#hw-5
+#application:
+#  cash:
+#    enable: 'true'
+
+#server:
+#  servlet:
+#    context-path: /level
+

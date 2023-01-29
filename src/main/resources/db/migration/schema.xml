@@ -1,0 +1,144 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Pavel Korobko" id="Create-table-card">
+        <preConditions>
+            <not>
+                <tableExists tableName="PATIENT_CARD"/>
+            </not>
+        </preConditions>
+        <createTable tableName="PATIENT_CARD">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="full_name" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dob" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="home_address" type="VARCHAR(250)">
+            </column>
+            <column name="num_site" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="complaints" type="VARCHAR(1000)">
+            </column>
+            <column name="anamnesis" type="VARCHAR(1000)">
+            </column>
+            <column name="conditions" type="VARCHAR(1000)">
+            </column>
+            <column name="diagnosis" type="VARCHAR(250)">
+            </column>
+            <column name="recommendations" type="VARCHAR(200)">
+            </column>
+            <column name="signature_doc" type="VARCHAR(10)">
+            </column>
+            <column name="signature_chief" type="VARCHAR(10)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Pavel Korobko" id="Create-table-recipe">
+        <preConditions>
+            <not>
+                <tableExists tableName="RECIPE"/>
+            </not>
+        </preConditions>
+        <createTable tableName="RECIPE">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="preparation" type="VARCHAR(1000)">
+            </column>
+            <column name="status" type="VARCHAR(50)">
+            </column>
+            <column name="note" type="VARCHAR(1000)">
+            </column>
+            <column name="card_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Vitalii Ivanov" id="Create-table-role">
+        <preConditions>
+            <not>
+                <tableExists tableName="ROLE"/>
+            </not>
+        </preConditions>
+        <createTable tableName="ROLE">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Pavel Korobko" id="Create-table-user">
+        <preConditions>
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="login" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INT(1)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="int">
+                <constraints nullable="false" foreignKeyName="FK_USER_ROLE" references="ROLE(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+    <changeSet author="Vitalii Ivanov" id="Filling-table-role-and-user">
+        <insert tableName="ROLE">
+            <column name="name" value="ADMIN" />
+        </insert>
+        <insert tableName="ROLE">
+            <column name="name" value="DOC" />
+        </insert>
+        <insert tableName="ROLE">
+            <column name="name" value="REGISTER" />
+        </insert>
+        <insert tableName="ROLE">
+            <column name="name" value="PHARMACY" />
+        </insert>
+
+        <insert tableName="user">
+            <column name="login" value="admin" />
+            <column name="password" value="$2a$10$Gq4Gjp73EBMFcm4Bq5G7i..XCUfMif5u69EvJKCaJlNVzvzZb2lVO" />
+            <column name="role_id" valueComputed="(SELECT ID FROM ROLE WHERE NAME = 'ADMIN')" />
+        </insert>
+        <insert tableName="user">
+            <column name="login" value="doc" />
+            <column name="password" value="$2a$12$L77hbuEMvn0PA2EZsvZlLeyLF544UL2gq.FwhTFQ3N.3JmQtw1f3C" />
+            <column name="role_id" valueComputed="(SELECT ID FROM ROLE WHERE NAME = 'DOC')" />
+        </insert>
+        <insert tableName="user">
+            <column name="login" value="register" />
+            <column name="password" value="$2a$12$C4q2BsGq0/M3bPuFZWItZO1.Bw8YQ/c6JOA9BiZY17Tdn4YT9P8O." />
+            <column name="role_id" valueComputed="(SELECT ID FROM ROLE WHERE NAME = 'REGISTER')" />
+        </insert>
+        <insert tableName="user">
+            <column name="login" value="pharmacy" />
+            <column name="password" value="$2a$12$ZGHQhiyGb9Qt5FvmUCKqi.ihXSZhd5IAnoJLT9pAxW9FBxThBUUr." />
+            <column name="role_id" valueComputed="(SELECT ID FROM ROLE WHERE NAME = 'PHARMACY')" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
