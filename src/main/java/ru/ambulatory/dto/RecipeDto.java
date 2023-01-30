@@ -14,7 +14,7 @@ public class RecipeDto {
 
     private String preparation;
 
-    private String status; //StatusRecipe
+    private StatusRecipe status;
 
     private String note;
 

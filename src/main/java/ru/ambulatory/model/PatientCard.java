@@ -3,6 +3,9 @@ package ru.ambulatory.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.ambulatory.model.type.Recommendation;
+import ru.ambulatory.model.type.SignatureChief;
+import ru.ambulatory.model.type.SignatureDoc;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -43,13 +46,13 @@ public class PatientCard {
     private String diagnosis;
 
     @Column(name = "recommendations")
-   // @Enumerated(value = EnumType.STRING)
-    private String recommendations;     //Recommendation
+    @Enumerated(value = EnumType.ORDINAL)
+    private Recommendation recommendations;
 
     @Column(name = "signature_doc")
-  //  @Enumerated(value = EnumType.STRING)
-    private String signatureDoc;      //SignatureDoc
+    @Enumerated(value = EnumType.ORDINAL)
+    private SignatureDoc signatureDoc;
 
     @Column(name = "signature_chief")
-   // @Enumerated(value = EnumType.STRING)
-    private String signatureChief;}         //SignatureChief
+    @Enumerated(value = EnumType.ORDINAL)
+    private SignatureChief signatureChief;}

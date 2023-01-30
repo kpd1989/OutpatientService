@@ -93,12 +93,10 @@
     <div class="row">
         <label for="status-edit-select">Статус выдачи</label>
         <select id="status-edit-select" name="status">
-            <option th:value="*{status}"><span th:text="#{*{status}+st}"></span></option>
-            <option value="0">Не выдано</option>
-            <option value="1">Выдано</option>
+            <option th:value="*{status}"><span th:text="#{*{status}}"></span></option>
+            <option value="NOT_ISSUED">Не выдано</option>
+            <option value="ISSUED">Выдано</option>
         </select>
-        <!-- <input id="status-edit-input" name="status" type="text" th:value="*{status}" required="required"
-                maxlength="50" value="0"/>-->
     </div>
 
     <div class="row">

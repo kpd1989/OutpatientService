@@ -3,6 +3,7 @@ package ru.ambulatory.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.ambulatory.model.type.StatusRecipe;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -23,8 +24,8 @@ public class Recipe {
     private String preparation;
 
     @Column(name = "status")
-//    @Enumerated(value = EnumType.ORDINAL)
-    private String status;                            //StatusRecipe
+    @Enumerated(value = EnumType.ORDINAL)
+    private StatusRecipe status;
 
     @Column(name = "note")  //nullable = false
     private String note;

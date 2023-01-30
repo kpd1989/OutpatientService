@@ -65,32 +65,29 @@
     <div class="row">
         <label for="recom-input">Рекомендации</label>
         <select id="recom-input" name="recommendations" type="text">
-            <option value="0">Без дополнительных рекомендаций</option>
-            <option value="1">Лечение (выписка рецепта)</option>
-            <option value="2">Направление к другому врачу</option>
-            <option value="3">Направление на экспертизу</option>
+            <option value="NO_RECOMMENDATIONS">Без дополнительных рекомендаций</option>
+            <option value="TREATMENT_AND_PRESCRIPTION">Лечение (выписка рецепта)</option>
+            <option value="TO_ANOTHER_DOCTOR">Направление к другому врачу</option>
+            <option value="TO_INSPECTION">Направление на экспертизу</option>
         </select>
-        <!--        <input id="recom-input" name="recommendations" type="text"  maxlength="200" />-->
     </div>
 
     <div class="row">
         <label for="doc-input">Отметка врача</label>
         <select id="doc-input" name="signatureDoc">
-            <option value="0">В работе</option>
-            <option value="1">Утверждаю</option>
-            <option value="2">Не актуально</option>
+            <option value="IN_WORK">В работе</option>
+            <option value="AGREE">Утверждаю</option>
+            <option value="NO_ACTUAL">Не актуально</option>
         </select>
-        <!--        <input id="doc-input" name="signatureDoc" type="text"  maxlength="10" />-->
     </div>
 
     <div class="row">
         <label for="chief-input">Согласование заведующего</label>
         <select id="chief-input" name="signatureChief">
-            <option value="0">Не рассмотрено</option>
-            <option value="1">Согласовано</option>
-            <option value="2">Отклонено</option>
+            <option value="NOT_CONSIDERED">Не рассмотрено</option>
+            <option value="AGREE">Согласовано</option>
+            <option value="NOT_AGREE">Отклонено</option>
         </select>
-        <!--        <input id="chief-input" name="signatureChief" type="text"  maxlength="10" />-->
     </div>
 
     <div class="row">
@@ -160,11 +157,11 @@
     <div class="row">
         <label for="recom-edit-input">Рекомендации</label>
         <select id="recom-edit-input" name="recommendations" type="text" th:value="*{recommendations}">
-            <option th:value="*{recommendations}"><span th:text="#{*{recommendations}+recom}"></span></option>
-            <option value="0">Без дополнительных рекомендаций</option>
-            <option value="1">Лечение (выписка рецепта)</option>
-            <option value="2">Направление к другому врачу</option>
-            <option value="3">Направление на экспертизу</option>
+            <option th:value="*{recommendations}"><span th:text="#{*{recommendations}}"></span></option>
+            <option value="NO_RECOMMENDATIONS">Без дополнительных рекомендаций</option>
+            <option value="TREATMENT_AND_PRESCRIPTION">Лечение (выписка рецепта)</option>
+            <option value="TO_ANOTHER_DOCTOR">Направление к другому врачу</option>
+            <option value="TO_INSPECTION">Направление на экспертизу</option>
         </select>
 
         <div class="row-recipe" th:object="${recipe}">
@@ -174,9 +171,9 @@
 
             <label for="status-recipe-edit">Статус выдачи</label>
             <select id="status-recipe-edit" name="status">
-                <option th:if="*{status != null}" th:value="*{status}"><span th:text="#{*{status}+st}"></span> </option>
-                <option value="0">Не выдано</option>
-                <option value="1">Выдано</option>
+                <option th:if="*{status != null}" th:value="*{status}"> <span th:text="#{*{status}}"></span> </option>
+                <option value="NOT_ISSUED">Не выдано</option>
+                <option value="ISSUED">Выдано</option>
             </select>
         </div>
 
@@ -192,25 +189,23 @@
 
     </div>
 
-
-
     <div class="row">
         <label for="doc-edit-input">Отметка врача</label>
         <select id="doc-edit-input" name="signatureDoc" th:value="*{signatureDoc}">
-            <option th:value="*{signatureDoc}"><span th:text="#{*{signatureDoc}+doc}"></span></option>
-            <option value="0">В работе</option>
-            <option value="1">Утверждаю</option>
-            <option value="2">Не актуально</option>
+            <option th:value="*{signatureDoc}"><span th:text="#{*{signatureDoc}}"></span></option>
+            <option value="IN_WORK">В работе</option>
+            <option value="AGREE">Утверждаю</option>
+            <option value="NO_ACTUAL">Не актуально</option>
         </select>
     </div>
 
     <div class="row">
         <label for="chief-edit-input">Согласование заведующего</label>
         <select id="chief-edit-input" name="signatureChief" type="text">
-            <option th:value="*{signatureChief}"><span th:text="#{*{signatureChief}+chief}"></span></option>
-            <option value="0">Не рассмотрено</option>
-            <option value="1">Согласовано</option>
-            <option value="2">Отклонено</option>
+            <option th:value="*{signatureChief}"><span th:text="#{*{signatureChief}}"></span></option>
+            <option value="NOT_CONSIDERED">Не рассмотрено</option>
+            <option value="AGREE">Согласовано</option>
+            <option value="NOT_AGREE">Отклонено</option>
         </select>
     </div>
 

@@ -33,11 +33,11 @@
             </column>
             <column name="diagnosis" type="VARCHAR(250)">
             </column>
-            <column name="recommendations" type="VARCHAR(200)">
+            <column name="recommendations" type="INT(1)" defaultValue="0">
             </column>
-            <column name="signature_doc" type="VARCHAR(10)">
+            <column name="signature_doc" type="INT(1)" defaultValue="0">
             </column>
-            <column name="signature_chief" type="VARCHAR(10)">
+            <column name="signature_chief" type="INT(1)" defaultValue="0">
             </column>
         </createTable>
     </changeSet>
@@ -54,7 +54,7 @@
             </column>
             <column name="preparation" type="VARCHAR(1000)">
             </column>
-            <column name="status" type="VARCHAR(50)">
+            <column name="status" type="INT(1)" defaultValue="0">
             </column>
             <column name="note" type="VARCHAR(1000)">
             </column>
@@ -63,7 +63,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vitalii Ivanov" id="Create-table-role">
+    <changeSet author="Pavel Korobko" id="Create-table-role">
         <preConditions>
             <not>
                 <tableExists tableName="ROLE"/>

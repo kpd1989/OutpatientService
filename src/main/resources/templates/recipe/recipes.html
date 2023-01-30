@@ -25,10 +25,9 @@
                             '</td>'
                     }
                     rowsData += '<tr><td>' + recipe.num + '</td>' +
-                        '<td>' + recipe.preparation + '</td>' +
-                        '<td>' + recipe.status + '</td>' +
-                        '<td>' + recipe.note + '</td>' +
                         '<td>' + recipe.patientCard.id + '</td>' +
+                        '<td>' + recipe.preparation + '</td>' +
+                        '<td>' + recipe.note + '</td>' +
                         actionButton +
                         '</tr>';
                 }
@@ -82,10 +81,9 @@
     <thead>
     <tr>
         <th>№ рецепта</th>
-        <th>Препараты</th>
-        <th>Статус выдачи</th>
-        <th>Примечание</th>
         <th>№ карты</th>
+        <th>Препараты</th>
+        <th>Примечание</th>
         <th sec:authorize="hasAuthority('ADMIN')">Действия</th>
     </tr>
     </thead>
