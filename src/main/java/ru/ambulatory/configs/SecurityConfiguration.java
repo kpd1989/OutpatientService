@@ -41,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers(
                         "/recipes", "/cards",
                         "/api/**").authenticated()
-                .antMatchers("/recipe/**", "/api/recipes/*", "/card/**", "/api/cards/*")
+                .antMatchers("/recipe/**", "/api/recipes/*", "/card/**", "/api/archive_cards/*", "/api/archive_recipes/*", "/api/archive_cards/*")
                 .hasAnyAuthority(ADMIN, DOC, REGISTER, PHARMACY)
                 .and()
                 .formLogin()
