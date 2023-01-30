@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class RecipeDto {
 
-    private Integer id;
+    private Integer num;
 
     private String preparation;
 
@@ -20,7 +20,7 @@ public class RecipeDto {
 
     private PatientCardDto patientCard;
 
-    public String getIdStr() {
-        return String.format("recipe_%s", id);
+    public String getNumStr() {
+        return String.format("recipe_%s", num);
     }
 }

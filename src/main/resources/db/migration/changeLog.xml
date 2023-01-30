@@ -6,6 +6,5 @@
 
     <include file="schema.xml" relativeToChangelogFile="true"/>
     <include file="data.xml" relativeToChangelogFile="true"/>
-<!--    <include file="filling-table.sql" relativeToChangelogFile="true"/>-->
 
 </databaseChangeLog>

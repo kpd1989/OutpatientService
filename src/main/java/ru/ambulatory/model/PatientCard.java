@@ -18,11 +18,9 @@ public class PatientCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @NotNull
     @Column(name = "dob", nullable = false)
     private String dob;
 

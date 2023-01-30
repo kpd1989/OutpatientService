@@ -38,7 +38,6 @@ public class PatientCardPageController {
 
         RecipeDto currentRecipe = recipeService.getByCardId(cardId)
                 .orElse(new RecipeDto());
-        System.out.println(currentRecipe);
         model.addAttribute("recipe", currentRecipe);
         return "card/card";
     }

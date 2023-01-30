@@ -49,7 +49,7 @@
             </not>
         </preConditions>
         <createTable tableName="RECIPE">
-            <column name="id" type="int" autoIncrement="true">
+            <column name="num" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="preparation" type="VARCHAR(1000)">

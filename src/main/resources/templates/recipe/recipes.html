@@ -20,11 +20,11 @@
                     if (result.admin) {
                         actionButton =
                             '<td>' +
-                            '<a href="/recipe/edit?id=' + recipe.id + '"><img title="Edit" src="/images/edit.png"/></a>' +
-                            '<a data-id="recipe_' + recipe.id + '" href="recipe.html"><img title="Delete" src="/images/delete.png"/></a>' +
+                            '<a href="/recipe/edit?num=' + recipe.num + '"><img title="Edit" src="/images/edit.png"/></a>' +
+                            '<a data-id="recipe_' + recipe.num + '" href="recipe.html"><img title="Delete" src="/images/delete.png"/></a>' +
                             '</td>'
                     }
-                    rowsData += '<tr><td>' + recipe.id + '</td>' +
+                    rowsData += '<tr><td>' + recipe.num + '</td>' +
                         '<td>' + recipe.preparation + '</td>' +
                         '<td>' + recipe.status + '</td>' +
                         '<td>' + recipe.note + '</td>' +

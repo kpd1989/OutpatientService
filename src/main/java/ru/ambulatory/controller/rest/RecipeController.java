@@ -24,9 +24,9 @@ public class RecipeController {
         return page;
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id) {
-        recipeService.deleteById(id);
+    @DeleteMapping("/{num}")
+    public ResponseEntity<?> delete(@PathVariable Integer num) {
+        recipeService.deleteById(num);
         return ResponseEntity.noContent().build();
     }
 

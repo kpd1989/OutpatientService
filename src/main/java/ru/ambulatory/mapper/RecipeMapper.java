@@ -12,14 +12,14 @@ import java.util.stream.Collectors;
 @Mapper
 public interface RecipeMapper {
 
-    @Mapping(target = "id", source = "entity.id")
+    @Mapping(target = "num", source = "entity.num")
     @Mapping(target = "preparation", source = "entity.preparation")
     @Mapping(target = "status", source = "entity.status")
     @Mapping(target = "note", source = "entity.note")
     @Mapping(target = "patientCard", source = "entity.patientCard")
     RecipeDto toDto(Recipe entity);
 
-    @Mapping(target = "id", source = "dto.id")
+    @Mapping(target = "num", source = "dto.num")
     @Mapping(target = "preparation", source = "dto.preparation")
     @Mapping(target = "status", source = "dto.status")
     @Mapping(target = "note", source = "dto.note")
