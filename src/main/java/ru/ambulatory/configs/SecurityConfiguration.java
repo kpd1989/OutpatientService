@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.ambulatory.security.AuthenticationHandler;
 
-import static ru.ambulatory.security.Authorities.ADMIN;
+import static ru.ambulatory.security.Authorities.*;
 
 @EnableWebSecurity
 @Configuration
@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/recipes", "/cards",
                         "/api/**").authenticated()
                 .antMatchers("/recipe/**", "/api/recipes/*", "/card/**", "/api/cards/*")
-                .hasAuthority(ADMIN)
+                .hasAnyAuthority(ADMIN, DOC, REGISTER, PHARMACY)
                 .and()
                 .formLogin()
                 .and()

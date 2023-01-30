@@ -13,13 +13,13 @@
         <a th:href="@{/logout}"><img title="Logout" th:src="@{/images/exit.png}"/></a>
     </div>
 </div>
-<form id="add-form" sec:authorize="hasAuthority('ADMIN')" th:action="@{/card/save}" th:if="${patientCard == null}"
+<form id="add-form" sec:authorize="hasAnyAuthority('ADMIN', 'REGISTER', 'DOC')" th:action="@{/card/save}" th:if="${patientCard == null}"
       method="post" action="card.html">
     <p><strong>Добавление карточки</strong></p>
 
     <div class="row">
         <label for="id-input">№ карты</label>
-        <input id="id-input" name="id" type="text" readonly="readonly"/>
+        <input id="id-input" value="не заполняется" type="text" readonly="readonly"/>
     </div>
 
     <div class="row">
@@ -41,53 +41,30 @@
         <label for="site-input">№ участка</label>
         <input id="site-input" name="numSite" type="text" required="required" minlength="1"/>
     </div>
+<!--    <div class="row">-->
+<!--        <label for="complaints-input">Жалобы</label>-->
+<!--        <input id="complaints-input" name="complaints" type="text" maxlength="1000"/>-->
+<!--    </div>-->
 
-    <div class="row">
-        <label for="complaints-input">Жалобы</label>
-        <input id="complaints-input" name="complaints" type="text" maxlength="1000"/>
-    </div>
+<!--    <div class="row">-->
+<!--        <label for="anamnesis-input">Анамнез</label>-->
+<!--        <input id="anamnesis-input" name="anamnesis" type="text" maxlength="1000"/>-->
+<!--    </div>-->
 
-    <div class="row">
-        <label for="anamnesis-input">Анамнез</label>
-        <input id="anamnesis-input" name="anamnesis" type="text" maxlength="1000"/>
-    </div>
+<!--    <div class="row">-->
+<!--        <label for="condition-input">Состояние</label>-->
+<!--        <input id="condition-input" name="conditions" type="text" maxlength="1000"/>-->
+<!--    </div>-->
 
-    <div class="row">
-        <label for="condition-input">Состояние</label>
-        <input id="condition-input" name="conditions" type="text" maxlength="1000"/>
-    </div>
+<!--    <div class="row">-->
+<!--        <label for="diagnosis-input">Диагноз</label>-->
+<!--        <input id="diagnosis-input" name="diagnosis" type="text" maxlength="250"/>-->
+<!--    </div>-->
 
-    <div class="row">
-        <label for="diagnosis-input">Диагноз</label>
-        <input id="diagnosis-input" name="diagnosis" type="text" maxlength="250"/>
-    </div>
-
-    <div class="row">
-        <label for="recom-input">Рекомендации</label>
-        <select id="recom-input" name="recommendations" type="text">
-            <option value="NO_RECOMMENDATIONS">Без дополнительных рекомендаций</option>
-            <option value="TREATMENT_AND_PRESCRIPTION">Лечение (выписка рецепта)</option>
-            <option value="TO_ANOTHER_DOCTOR">Направление к другому врачу</option>
-            <option value="TO_INSPECTION">Направление на экспертизу</option>
-        </select>
-    </div>
-
-    <div class="row">
-        <label for="doc-input">Отметка врача</label>
-        <select id="doc-input" name="signatureDoc">
-            <option value="IN_WORK">В работе</option>
-            <option value="AGREE">Утверждаю</option>
-            <option value="NO_ACTUAL">Не актуально</option>
-        </select>
-    </div>
-
-    <div class="row">
-        <label for="chief-input">Согласование заведующего</label>
-        <select id="chief-input" name="signatureChief">
-            <option value="NOT_CONSIDERED">Не рассмотрено</option>
-            <option value="AGREE">Согласовано</option>
-            <option value="NOT_AGREE">Отклонено</option>
-        </select>
+    <div class="row" type="hidden">
+        <input id="recom-input" type="hidden" name="recommendations" value="NO_RECOMMENDATIONS"/>
+        <input id="doc-input" type="hidden" name="signatureDoc" value="IN_WORK"/>
+        <input id="chief-input" type="hidden" name="signatureChief" value="NOT_CONSIDERED"/>
     </div>
 
     <div class="row">
@@ -96,9 +73,8 @@
     </div>
 </form>
 
-<form id="edit-form" sec:authorize="hasAuthority('ADMIN')" th:action="@{/card/save(id=${patientCard.id})}"
+<form id="edit-form" sec:authorize="hasAnyAuthority('ADMIN', 'DOC')" th:action="@{/card/save(id=${patientCard.id})}"
       th:unless="${patientCard == null}" method="post"  action="card.html" th:object="${patientCard}">
-    <!--  th:object="${recipe}"  -->
     <p><strong>Информация о карточке</strong></p>
 
     <div class="row">
@@ -164,10 +140,13 @@
             <option value="TO_INSPECTION">Направление на экспертизу</option>
         </select>
 
+        <div class="row1-recipe">
+            <label> Выписка рецепта:</label>
+        </div>
         <div class="row-recipe" th:object="${recipe}">
 
             <label for="id-recipe-edit">№ рецепта</label>
-            <input id="id-recipe-edit" name="num" type="text" th:value="*{num}" />
+            <input id="id-recipe-edit" name="num" type="text" th:value="*{num}" readonly="readonly"/>
 
             <label for="status-recipe-edit">Статус выдачи</label>
             <select id="status-recipe-edit" name="status">

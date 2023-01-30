@@ -16,11 +16,17 @@
                 let rowsData = '';
                 for (let i = 0; i < result.data.length; i++) {
                     let recipe = result.data[i];
-                    var actionButton = '';
-                    if (result.admin) {
-                        actionButton =
+                    var actionButtonEdit = '';
+                    var actionButtonDelete = '';
+                    if (result.admin || result.pharmacy) {
+                        actionButtonEdit =
                             '<td>' +
                             '<a href="/recipe/edit?num=' + recipe.num + '"><img title="Edit" src="/images/edit.png"/></a>' +
+                            '</td>'
+                    }
+                    if (result.admin) {
+                        actionButtonDelete =
+                            '<td>' +
                             '<a data-id="recipe_' + recipe.num + '" href="recipe.html"><img title="Delete" src="/images/delete.png"/></a>' +
                             '</td>'
                     }
@@ -28,7 +34,8 @@
                         '<td>' + recipe.patientCard.id + '</td>' +
                         '<td>' + recipe.preparation + '</td>' +
                         '<td>' + recipe.note + '</td>' +
-                        actionButton +
+                        actionButtonEdit +
+                        actionButtonDelete +
                         '</tr>';
                 }
                 let recipeDataElement = $('#recipeData');
@@ -84,14 +91,14 @@
         <th>№ карты</th>
         <th>Препараты</th>
         <th>Примечание</th>
-        <th sec:authorize="hasAuthority('ADMIN')">Действия</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'PHARMACY')">Изменить</th>
+        <th sec:authorize="hasAuthority('ADMIN')">Удалить</th>
     </tr>
     </thead>
     <tbody id="recipeData"/>
 </table>
 <div id="toolbar">
     <a th:href="@{/}" href="../index.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
-    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/recipe/add}" href="recipe.html"><img alt="Add" th:src="@{/images/add.png}"/></a>
 </div>
 </body>
 <style>

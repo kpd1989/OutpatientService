@@ -13,68 +13,44 @@
         <a th:href="@{/logout}"><img title="Logout" th:src="@{/images/exit.png}"/></a>
     </div>
 </div>
-<form id="add-form" sec:authorize="hasAuthority('ADMIN')" th:action="@{/recipe/save}" th:if="${recipe == null}"
-      method="post" action="recipe.html">
-    <p><strong>Информация рецепта</strong></p>
+<!--<form id="add-form" sec:authorize="hasAuthority('ADMIN')" th:action="@{/recipe/save}" th:if="${recipe == null}"-->
+<!--      method="post" action="recipe.html">-->
+<!--    <p><strong>Информация рецепта</strong></p>-->
 
-    <div class="row">
-        <label for="id-input">№ рецепта</label>
-        <input id="id-input" name="num" type="text" readonly="readonly"/>
-    </div>
+<!--    <div class="row">-->
+<!--        <label for="id-input">№ рецепта</label>-->
+<!--        <input id="id-input" name="num" type="text" readonly="readonly"/>-->
+<!--    </div>-->
 
-    <div class="row">
-        <label for="preparation-input">Препараты</label>
-        <input id="preparation-input" name="preparation" type="text" maxlength="1000"/>
-    </div>
+<!--    <div class="row">-->
+<!--        <label for="preparation-input">Препараты</label>-->
+<!--        <input id="preparation-input" name="preparation" type="text" maxlength="1000"/>-->
+<!--    </div>-->
 
-    <div class="row">
-        <label for="status-select">Статус выдачи</label>
-        <select id="status-select" name="status" type="text">
-            <option value="0">Не выдано</option>
-            <option value="1">выдано</option>
-        </select>
-    </div>
+<!--    <div class="row">-->
+<!--        <label for="status-select">Статус выдачи</label>-->
+<!--        <select id="status-select" name="status" type="text">-->
+<!--            <option value="0">Не выдано</option>-->
+<!--            <option value="1">выдано</option>-->
+<!--        </select>-->
+<!--    </div>-->
 
-    <div class="row">
-        <label for="note-input">Примечание</label>
-        <input id="note-input" name="note" type="text" maxlength="1000"/>
-    </div>
+<!--    <div class="row">-->
+<!--        <label for="note-input">Примечание</label>-->
+<!--        <input id="note-input" name="note" type="text" maxlength="1000"/>-->
+<!--    </div>-->
 
-    <div class="row">
-        <label for="card-id-input">№ карты пациента</label>
-        <input id="card-id-input" name="patientCard.id" type="text" required="required"/>
-    </div>
-    <!--
-        <div class="row">
-            <label for="card-input">Полное имя</label>
-            <input id="card-input" name="patientCard.fullName" type="text" th:value="*{patientCard.fullName}" readonly="readonly"
-                   value="Art"/>
-        </div>
+<!--    <div class="row">-->
+<!--        <label for="card-id-input">№ карты пациента</label>-->
+<!--        <input id="card-id-input" name="patientCard.id" type="text" required="required"/>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <a th:href="@{/recipes}" href="recipes.html"><img alt="Back" th:src="@{/images/back.png}"/></a>-->
+<!--        <button type="submit"><img alt="Save" th:src="@{/images/save.png}"/></button>-->
+<!--    </div>-->
+<!--</form>-->
 
-        <div class="row">
-            <label for="dob-input">Дата рождения</label>
-            <input id="dob-input" name="patientCard.dob" type="text" th:value="*{patientCard.dob}" readonly="readonly"
-                   value="Art"/>
-        </div>
-
-        <div class="row">
-            <label for="address-input">Адрес проживания</label>
-            <input id="address-input" name="patientCard.homeAddress" type="text" th:value="*{patientCard.homeAddress}" readonly="readonly"
-                   value="Art"/>
-        </div>
-
-        <div class="row">
-            <label for="site-input">Номер участка</label>
-            <input id="site-input" name="patientCard.numSite" type="text" th:value="*{patientCard.numSite}" readonly="readonly"
-                   value="Art"/>
-        </div>-->
-    <div class="row">
-        <a th:href="@{/recipes}" href="recipes.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
-        <button type="submit"><img alt="Save" th:src="@{/images/save.png}"/></button>
-    </div>
-</form>
-
-<form id="edit-form" sec:authorize="hasAuthority('ADMIN')" th:action="@{/recipe/save(num=${recipe.num})}"
+<form id="edit-form" sec:authorize="hasAnyAuthority('ADMIN', 'PHARMACY')" th:action="@{/recipe/save(num=${recipe.num})}"
       th:unless="${recipe == null}" method="post"
       action="recipe.html" th:object="${recipe}">
     <p><strong>Информация рецепта</strong></p>

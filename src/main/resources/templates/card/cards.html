@@ -16,11 +16,17 @@
                 let rowsData = '';
                 for (let i = 0; i < result.data.length; i++) {
                     let card = result.data[i];
-                    var actionButton = '';
-                    if (result.admin) {
-                        actionButton =
+                    var actionButtonEdit = '';
+                    var actionButtonDelete = '';
+                    if (result.admin || result.doc || result.register) {
+                        actionButtonEdit =
                             '<td>' +
                             '<a href="/card/edit?id=' + card.id + '"><img title="Edit" src="/images/edit.png"/></a>' +
+                            '</td>'
+                    }
+                    if (result.admin) {
+                        actionButtonDelete =
+                            '<td>' +
                             '<a data-id="card_' + card.id + '" href="card.html"><img title="Delete" src="/images/delete.png"/></a>' +
                             '</td>'
                     }
@@ -28,15 +34,8 @@
                         '<td>' + card.numSite + '</td>' +
                         '<td>' + card.fullName + '</td>' +
                         '<td>' + card.dob + '</td>' +
-                        /*'<td>' + card.homeAddress + '</td>' +*/
-                        /*'<td>' + card.complaints + '</td>' +
-                        '<td>' + card.anamnesis + '</td>' +
-                        '<td>' + card.conditions + '</td>' +
-                        '<td>' + card.diagnosis + '</td>' +
-                        '<td>' + card.recommendations + '</td>' +
-                        '<td>' + card.signatureDoc + '</td>' +
-                        '<td>' + card.signatureChief + '</td>' +*/
-                        actionButton +
+                        actionButtonEdit +
+                        actionButtonDelete +
                         '</tr>';
                 }
                 let patientCardData = $('#patientCardData');
@@ -92,23 +91,15 @@
         <th>№ участка</th>
         <th>Полное имя</th>
         <th>Дата рождения</th>
-       <!-- <th>Домашний адрес</th>-->
-     <!--   <th>Жалобы</th>
-        <th>Анамнез</th>
-        <th>Состояние пациента</th>
-        <th>Диагноз</th>
-        <th>Рекомендации</th>
-        <th>Отметка врача</th>
-        <th>Согласование заведующего</th>-->
-
-        <th sec:authorize="hasAuthority('ADMIN')">Действия</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'DOC', 'REGISTER')">Изменить</th>
+        <th sec:authorize="hasAuthority('ADMIN')">Удалить</th>
     </tr>
     </thead>
     <tbody id="patientCardData"/>
 </table>
 <div id="toolbar">
     <a th:href="@{/}" href="../index.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
-    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/card/add}" href="card.html"><img alt="Add" th:src="@{/images/add.png}"/></a>
+    <a sec:authorize="hasAnyAuthority('ADMIN', 'DOC', 'REGISTER')" th:href="@{/card/add}" href="card.html"><img alt="Add" th:src="@{/images/add.png}"/></a>
 </div>
 </body>
 <style>
