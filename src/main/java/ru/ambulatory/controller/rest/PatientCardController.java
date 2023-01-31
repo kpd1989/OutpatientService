@@ -21,6 +21,7 @@ public class PatientCardController {
     public PatientCardPageDto find(@PageableDefault(value = 20) Pageable pageable) {
         final PatientCardPageDto page = cardService.getPage(pageable);
         page.setAdmin(authorities.isAdmin());
+        page.setChief(authorities.isChief());
         page.setDoc(authorities.isDoc());
         page.setRegister(authorities.isRegister());
         page.setPharmacy(authorities.isPharmacy());

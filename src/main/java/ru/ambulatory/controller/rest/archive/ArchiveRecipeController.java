@@ -23,6 +23,7 @@ public class ArchiveRecipeController {
     public ArchiveRecipePageDto find(@PageableDefault(value = 20) Pageable pageable) {
         final ArchiveRecipePageDto page = recipeService.getPage(pageable);
         page.setAdmin(authorities.isAdmin());
+        page.setChief(authorities.isChief());
         page.setPharmacy(authorities.isPharmacy());
         return page;
     }

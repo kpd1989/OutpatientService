@@ -18,13 +18,13 @@
                     let recipe = result.data[i];
                     var actionButtonEdit = '';
                     var actionButtonDelete = '';
-                    if (result.admin || result.pharmacy) {
+                    if (result.admin || result.chief || result.pharmacy) {
                         actionButtonEdit =
                             '<td>' +
                             '<a href="/recipe/edit?num=' + recipe.num + '"><img title="Edit" src="/images/edit.png"/></a>' +
                             '</td>'
                     }
-                    if (result.admin) {
+                    if (result.admin || result.chief) {
                         actionButtonDelete =
                             '<td>' +
                             '<a data-id="recipe_' + recipe.num + '" href="recipe.html"><img title="Delete" src="/images/delete.png"/></a>' +
@@ -40,7 +40,7 @@
                 }
                 let recipeDataElement = $('#recipeData');
                 recipeDataElement.html(rowsData);
-                if (result.admin) {
+                if (result.admin || result.chief) {
                     $('a[data-id^=recipe_]').one('click', function (event) {
                         if (confirm('Вы уверены в удалении данного рецепта?')) {
                             let recipeId = $(this).attr('data-id').replace('recipe_', '');
@@ -91,8 +91,8 @@
         <th>№ карты</th>
         <th>Препараты</th>
         <th>Примечание</th>
-        <th sec:authorize="hasAnyAuthority('ADMIN', 'PHARMACY')">Изменить</th>
-        <th sec:authorize="hasAuthority('ADMIN')">Удалить</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF', 'PHARMACY')">Изменить</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF')">Удалить</th>
     </tr>
     </thead>
     <tbody id="recipeData"/>

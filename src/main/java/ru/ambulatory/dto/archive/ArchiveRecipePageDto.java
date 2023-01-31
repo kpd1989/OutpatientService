@@ -16,6 +16,7 @@ public class ArchiveRecipePageDto {
     private boolean hasNext;
     private boolean hasPrevious;
     private boolean admin;
+    private boolean chief;
     private boolean doc;
     private boolean pharmacy;
 }

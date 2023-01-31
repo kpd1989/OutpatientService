@@ -5,6 +5,7 @@ import ru.ambulatory.model.type.Recommendation;
 import ru.ambulatory.model.type.SignatureChief;
 import ru.ambulatory.model.type.SignatureDoc;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -12,10 +13,10 @@ public class PatientCardDto {
 
     private Integer id;
 
-    @NotNull
+    @NotEmpty
     private String fullName;
 
-    @NotNull
+    @NotEmpty
     private String dob;
 
     private String homeAddress;

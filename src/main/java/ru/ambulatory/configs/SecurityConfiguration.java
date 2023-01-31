@@ -17,6 +17,8 @@ import ru.ambulatory.security.AuthenticationHandler;
 
 import static ru.ambulatory.security.Authorities.*;
 
+
+
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
@@ -41,8 +43,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers(
                         "/recipes", "/cards",
                         "/api/**").authenticated()
-                .antMatchers("/recipe/**", "/api/recipes/*", "/card/**", "/api/archive_cards/*", "/api/archive_recipes/*", "/api/archive_cards/*")
-                .hasAnyAuthority(ADMIN, DOC, REGISTER, PHARMACY)
+                .antMatchers("/recipe/**", "/api/recipes/*", "/card/**", "/api/cards/*", "/api/archive_recipes/*", "/api/archive_cards/*")
+                .hasAnyAuthority(ADMIN, CHIEF, DOC, REGISTER, PHARMACY)
                 .and()
                 .formLogin()
                 .and()

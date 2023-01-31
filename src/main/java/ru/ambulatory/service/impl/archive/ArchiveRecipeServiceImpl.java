@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ambulatory.dto.RecipeDto;
 import ru.ambulatory.dto.archive.ArchiveRecipePageDto;
-import ru.ambulatory.mapper.ArchivePatientCardMapper;
 import ru.ambulatory.mapper.ArchiveRecipeMapper;
 import ru.ambulatory.model.archive.ArchiveRecipe;
-import ru.ambulatory.repository.archive.ArchivePatientCardRepository;
 import ru.ambulatory.repository.archive.ArchiveRecipeRepository;
 import ru.ambulatory.security.Authorities;
 import ru.ambulatory.service.archive.ArchiveRecipeService;
@@ -41,6 +39,7 @@ public class ArchiveRecipeServiceImpl implements ArchiveRecipeService {
                 currentPage.hasNext(),
                 currentPage.hasPrevious(),
                 authorities.isAdmin(),
+                authorities.isChief(),
                 authorities.isDoc(),
                 authorities.isPharmacy());
     }

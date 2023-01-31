@@ -3,10 +3,6 @@ package ru.ambulatory.dto;
 import lombok.Data;
 import ru.ambulatory.model.type.StatusRecipe;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 @Data
 public class RecipeDto {
 

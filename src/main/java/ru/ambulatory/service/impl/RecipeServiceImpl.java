@@ -44,6 +44,7 @@ public class RecipeServiceImpl implements RecipeService {
                 currentPage.hasNext(),
                 currentPage.hasPrevious(),
                 authorities.isAdmin(),
+                authorities.isChief(),
                 authorities.isDoc(),
                 authorities.isPharmacy());
     }

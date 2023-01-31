@@ -10,10 +10,10 @@ import static ru.ambulatory.security.Authorities.*;
 @PreAuthorize("isAuthenticated()")
 public interface PatientCardRepository extends JpaRepository<PatientCard, Integer> {
 
-    @Secured({ADMIN, DOC, REGISTER})
+    @Secured({ADMIN, CHIEF, DOC, REGISTER})
     PatientCard save(PatientCard card);
 
-    @Secured(ADMIN)
+    @Secured({ADMIN, CHIEF})
     void delete(PatientCard card);
 
 }

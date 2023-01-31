@@ -14,14 +14,14 @@ import static ru.ambulatory.security.Authorities.*;
 @PreAuthorize("isAuthenticated()")
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
-    @Secured({ADMIN, DOC, PHARMACY})
+    @Secured({ADMIN, CHIEF, DOC, PHARMACY})
     Recipe save(Recipe recipe);
 
-    @Secured(ADMIN)
+    @Secured({ADMIN, CHIEF})
     void delete(Recipe recipe);
 
     @Query("select resepi from Recipe resepi " +
            "where resepi.patientCard.id = :cardId")
-    @Secured({ADMIN, DOC, PHARMACY})
+    @Secured({ADMIN, CHIEF, DOC, PHARMACY})
     Optional<Recipe> findByCardId(@Param("cardId") Integer cardId);
 }

@@ -15,6 +15,7 @@ public class PatientCardPageDto {
     private boolean hasNext;
     private boolean hasPrevious;
     private boolean admin;
+    private boolean chief;
     private boolean doc;
     private boolean register;
     private boolean pharmacy;

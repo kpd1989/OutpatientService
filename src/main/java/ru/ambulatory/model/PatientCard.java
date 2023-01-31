@@ -8,6 +8,7 @@ import ru.ambulatory.model.type.SignatureChief;
 import ru.ambulatory.model.type.SignatureDoc;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -21,15 +22,18 @@ public class PatientCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotEmpty
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
+    @NotEmpty
     @Column(name = "dob", nullable = false)
     private String dob;
 
     @Column(name = "home_address")
     private String homeAddress;
 
+    @NotNull
     @Column(name = "num_site", nullable = false)
     private Integer numSite;
 
@@ -55,4 +59,5 @@ public class PatientCard {
 
     @Column(name = "signature_chief")
     @Enumerated(value = EnumType.ORDINAL)
-    private SignatureChief signatureChief;}
+    private SignatureChief signatureChief;
+}

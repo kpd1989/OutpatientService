@@ -58,4 +58,5 @@ public class ArchivePatientCard {
 
     @Column(name = "signature_chief")
     @Enumerated(value = EnumType.ORDINAL)
-    private SignatureChief signatureChief;}
+    private SignatureChief signatureChief;
+}

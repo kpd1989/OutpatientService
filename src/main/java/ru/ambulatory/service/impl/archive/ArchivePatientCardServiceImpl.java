@@ -39,6 +39,7 @@ public class ArchivePatientCardServiceImpl implements ArchivePatientCardService 
                 currentPage.hasNext(),
                 currentPage.hasPrevious(),
                 authorities.isAdmin(),
+                authorities.isChief(),
                 authorities.isDoc(),
                 authorities.isRegister(),
                 authorities.isPharmacy());

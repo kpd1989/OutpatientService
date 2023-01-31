@@ -25,7 +25,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "USER")
 @NamedEntityGraph(name = "User.role", attributeNodes = @NamedAttributeNode("role"))
 public class User {
 
@@ -36,14 +36,6 @@ public class User {
     @NotEmpty
     @Column(name = "login", nullable = false)
     private String login;
-
-    /*@NotEmpty
-    @Column(name = "full_name", nullable = false)
-    private String fullName;
-
-    @NotEmpty
-    @Column(name = "position", nullable = false)
-    private String position;*/
 
     @NotEmpty
     @Column(name = "password", nullable = false)

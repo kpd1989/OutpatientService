@@ -50,7 +50,7 @@
 <!--    </div>-->
 <!--</form>-->
 
-<form id="edit-form" sec:authorize="hasAnyAuthority('ADMIN', 'PHARMACY')" th:action="@{/recipe/save(num=${recipe.num})}"
+<form id="edit-form" sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF', 'PHARMACY')" th:action="@{/recipe/save(num=${recipe.num})}"
       th:unless="${recipe == null}" method="post"
       action="recipe.html" th:object="${recipe}">
     <p><strong>Информация рецепта</strong></p>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class Authorities {
 
     public static final String ADMIN = "ADMIN";
+    public static final String CHIEF = "CHIEF";
     public static final String DOC = "DOC";
     public static final String REGISTER = "REGISTER";
     public static final String PHARMACY = "PHARMACY";
@@ -16,6 +17,11 @@ public class Authorities {
     public boolean isAdmin() {
         return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority).anyMatch(ADMIN::equals);
+    }
+
+    public boolean isChief() {
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority).anyMatch(CHIEF::equals);
     }
 
     public boolean isDoc() {

@@ -18,29 +18,41 @@
                     let card = result.data[i];
                     var actionButtonEdit = '';
                     var actionButtonDelete = '';
-                    if (result.admin || result.doc || result.register) {
+                    if (result.admin || result.chief || result.doc) {
                         actionButtonEdit =
                             '<td>' +
                             '<a href="/card/edit?id=' + card.id + '"><img title="Edit" src="/images/edit.png"/></a>' +
                             '</td>'
                     }
-                    if (result.admin) {
+                    if (result.admin || result.chief) {
                         actionButtonDelete =
                             '<td>' +
                             '<a data-id="card_' + card.id + '" href="card.html"><img title="Delete" src="/images/delete.png"/></a>' +
                             '</td>'
                     }
-                    rowsData += '<tr><td>' + card.id + '</td>' +
-                        '<td>' + card.numSite + '</td>' +
-                        '<td>' + card.fullName + '</td>' +
-                        '<td>' + card.dob + '</td>' +
-                        actionButtonEdit +
-                        actionButtonDelete +
-                        '</tr>';
+
+                    if (result.chief && card.signatureDoc==='AGREE' && card.signatureChief==='NOT_CONSIDERED') {
+                        rowsData += '<tr><td>' + card.id + '</td>' +
+                            '<td>' + card.numSite + '</td>' +
+                            '<td>' + card.fullName + '</td>' +
+                            '<td>' + card.dob + '</td>' +
+                            actionButtonEdit +
+                            actionButtonDelete +
+                            '</tr>';
+                    }
+                    if (result.admin || result.doc || result.register) {
+                        rowsData += '<tr><td>' + card.id + '</td>' +
+                            '<td>' + card.numSite + '</td>' +
+                            '<td>' + card.fullName + '</td>' +
+                            '<td>' + card.dob + '</td>' +
+                            actionButtonEdit +
+                            actionButtonDelete +
+                            '</tr>';
+                    }
                 }
                 let patientCardData = $('#patientCardData');
                 patientCardData.html(rowsData);
-                if (result.admin) {
+                if (result.admin || result.chief) {
                     $('a[data-id^=card_]').one('click', function (event) {
                         if (confirm('Are you sure to delete this card?')) {
                             let cardId = $(this).attr('data-id').replace('card_', '');
@@ -91,15 +103,15 @@
         <th>№ участка</th>
         <th>Полное имя</th>
         <th>Дата рождения</th>
-        <th sec:authorize="hasAnyAuthority('ADMIN', 'DOC', 'REGISTER')">Изменить</th>
-        <th sec:authorize="hasAuthority('ADMIN')">Удалить</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF', 'DOC')">Изменить</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF')">Удалить</th>
     </tr>
     </thead>
     <tbody id="patientCardData"/>
 </table>
 <div id="toolbar">
     <a th:href="@{/}" href="../index.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
-    <a sec:authorize="hasAnyAuthority('ADMIN', 'DOC', 'REGISTER')" th:href="@{/card/add}" href="card.html"><img alt="Add" th:src="@{/images/add.png}"/></a>
+    <a sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF', 'DOC', 'REGISTER')" th:href="@{/card/add}" href="card.html"><img alt="Add" th:src="@{/images/add.png}"/></a>
 </div>
 </body>
 <style>

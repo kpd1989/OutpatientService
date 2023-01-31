@@ -21,6 +21,7 @@ public class RecipeController {
     public RecipePageDto find(@PageableDefault(value = 20) Pageable pageable) {
         final RecipePageDto page = recipeService.getPage(pageable);
         page.setAdmin(authorities.isAdmin());
+        page.setChief(authorities.isChief());
         page.setDoc(authorities.isDoc());
         page.setPharmacy(authorities.isPharmacy());
         return page;
