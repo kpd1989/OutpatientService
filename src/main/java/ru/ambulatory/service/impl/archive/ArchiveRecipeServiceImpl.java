@@ -45,12 +45,6 @@ public class ArchiveRecipeServiceImpl implements ArchiveRecipeService {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Optional<RecipeDto> getById(Integer recipeId) {
-        return recipeMapper.toOptionalDto(recipeRepository.findById(recipeId));
-    }
-
-    @Override
     @Transactional
     public RecipeDto save(RecipeDto recipe) {
         return recipeMapper.toDto(recipeRepository.save(recipeMapper.toEntity(recipe)));

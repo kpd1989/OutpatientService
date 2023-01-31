@@ -9,7 +9,10 @@ import ru.ambulatory.model.Recipe;
 
 import java.util.Optional;
 
-import static ru.ambulatory.security.Authorities.*;
+import static ru.ambulatory.security.Authorities.ADMIN;
+import static ru.ambulatory.security.Authorities.CHIEF;
+import static ru.ambulatory.security.Authorities.DOC;
+import static ru.ambulatory.security.Authorities.PHARMACY;
 
 @PreAuthorize("isAuthenticated()")
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {

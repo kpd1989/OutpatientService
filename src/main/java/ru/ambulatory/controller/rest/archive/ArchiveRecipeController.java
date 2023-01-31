@@ -3,12 +3,11 @@ package ru.ambulatory.controller.rest.archive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import ru.ambulatory.dto.RecipePageDto;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.ambulatory.dto.archive.ArchiveRecipePageDto;
 import ru.ambulatory.security.Authorities;
-import ru.ambulatory.service.RecipeService;
 import ru.ambulatory.service.archive.ArchiveRecipeService;
 
 @RestController

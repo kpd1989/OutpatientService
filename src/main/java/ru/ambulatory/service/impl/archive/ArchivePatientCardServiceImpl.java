@@ -14,7 +14,6 @@ import ru.ambulatory.security.Authorities;
 import ru.ambulatory.service.archive.ArchivePatientCardService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -46,20 +45,9 @@ public class ArchivePatientCardServiceImpl implements ArchivePatientCardService 
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Optional<PatientCardDto> getById(Integer cardId) {
-        return patientCardMapper.toOptionalDto(patientCardRepository.findById(cardId));
-    }
-
-    @Override
     @Transactional
     public PatientCardDto save(PatientCardDto patientCard) {
         return patientCardMapper.toDto(patientCardRepository.save(patientCardMapper.toEntity(patientCard)));
     }
 
-    @Override
-    @Transactional
-    public void deleteById(Integer cardId) {
-        patientCardRepository.deleteById(cardId);
-    }
 }

@@ -5,8 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.ambulatory.model.type.StatusRecipe;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Enumerated;
+import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
 
 @Data
 @NoArgsConstructor

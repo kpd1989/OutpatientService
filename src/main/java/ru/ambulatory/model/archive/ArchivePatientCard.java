@@ -7,7 +7,12 @@ import ru.ambulatory.model.type.Recommendation;
 import ru.ambulatory.model.type.SignatureChief;
 import ru.ambulatory.model.type.SignatureDoc;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 

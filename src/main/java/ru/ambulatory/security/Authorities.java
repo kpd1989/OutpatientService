@@ -13,7 +13,6 @@ public class Authorities {
     public static final String REGISTER = "REGISTER";
     public static final String PHARMACY = "PHARMACY";
 
-
     public boolean isAdmin() {
         return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority).anyMatch(ADMIN::equals);
