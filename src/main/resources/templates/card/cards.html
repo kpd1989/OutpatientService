@@ -111,7 +111,7 @@
 </table>
 <div id="toolbar">
     <a th:href="@{/}" href="../index.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
-    <a sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF', 'DOC', 'REGISTER')" th:href="@{/card/add}" href="card.html"><img alt="Add" th:src="@{/images/add.png}"/></a>
+    <a sec:authorize="hasAnyAuthority('ADMIN', 'REGISTER')" th:href="@{/card/add}" href="card.html"><img alt="Add" th:src="@{/images/add.png}"/></a>
 </div>
 </body>
 <style>

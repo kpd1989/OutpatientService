@@ -55,7 +55,7 @@ public class PatientCardPageController {
             return "redirect:/cards";
         }
 
-        if (recipe.getStatus().ordinal() == 1 && card.getSignatureChief().ordinal() == 1) {
+        if (card.getSignatureChief().ordinal() == 1 && recipe.getStatus().ordinal() == 1) {
             archivePatientCardService.save(card);
             archiveRecipeService.save(recipe);
             patientCardService.deleteById(card.getId());
