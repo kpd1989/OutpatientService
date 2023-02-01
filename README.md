@@ -1,11 +1,5 @@
 # Амбулаторная служба
 
-manager
-- Approves or rejects.\
-  When approved, send the prescription to the pharmacy
-
-Pharmacy
-- mark of issuance ---> sending a closed prescription to the archive
 
 В регистратуру вносится карта пациента (мед. регистратор)
 - код пациента (окончательный)
@@ -62,3 +56,9 @@ Next goes to the local doctor
   - without additional recommendations (closes the map and saves to the archive)
 - sending for signature to the head of the outpatient service
 
+manager
+- Approves or rejects.\
+  When approved, send the prescription to the pharmacy
+
+Pharmacy
+- mark of issuance ---> sending a closed prescription to the archive
