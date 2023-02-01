@@ -1,4 +1,4 @@
-package ru.ambulatory.configs;
+package ru.ambulatory.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.ambulatory.security.AuthenticationHandler;
 
 import static ru.ambulatory.security.Authorities.*;
-
-
 
 @EnableWebSecurity
 @Configuration
