@@ -129,12 +129,6 @@
             <label for="id-recipe-edit">№ рецепта</label>
             <input id="id-recipe-edit" name="num" type="text" th:value="*{num}" readonly="readonly"/>
 
-            <label for="status-recipe-edit">Статус выдачи</label>
-            <select id="status-recipe-edit" name="status">
-                <option th:if="*{status != null}" th:value="*{status}"> <span th:text="#{*{status}}"></span> </option>
-                <option value="NOT_ISSUED">Не выдано</option>
-                <option value="ISSUED">Выдано</option>
-            </select>
         </div>
 
         <div class="row-recipe" th:object="${recipe}">

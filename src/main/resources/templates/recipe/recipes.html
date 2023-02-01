@@ -31,12 +31,13 @@
                             '</td>'
                     }
                     rowsData += '<tr><td>' + recipe.num + '</td>' +
-                        '<td>' + recipe.patientCard.id + '</td>' +
-                        '<td>' + recipe.preparation + '</td>' +
-                        '<td>' + recipe.note + '</td>' +
-                        actionButtonEdit +
-                        actionButtonDelete +
-                        '</tr>';
+                            '<td>' + recipe.patientCard.id + '</td>' +
+                            '<td>' + recipe.preparation + '</td>' +
+                            '<td>' + recipe.note + '</td>' +
+                            actionButtonEdit +
+                            actionButtonDelete +
+                            '</tr>';
+
                 }
                 let recipeDataElement = $('#recipeData');
                 recipeDataElement.html(rowsData);
