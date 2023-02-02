@@ -1,0 +1,10 @@
+insert into PATIENT_CARD(full_name, dob, home_address, num_site, complaints, anamnesis, conditions, diagnosis, recommendations, signature_doc, signature_chief) values ('Сидоров Д.А', '01.01.2001', 'д.Березовка', 1, 'печень', 'курение', 'стабильное', 'аллергия', 1, 1, 0);
+insert into PATIENT_CARD(full_name, dob, home_address, num_site, complaints, anamnesis, conditions, diagnosis, recommendations, signature_doc, signature_chief) values ('Петров А.Е.', '05.06.1980', 'д.Петровка', 1, 'голова', 'Заболела в 2005г', 'стабильное', 'нарушение мозгового кровообращения', 1, 0, 0);
+insert into PATIENT_CARD(full_name, dob, home_address, num_site, complaints, anamnesis, conditions, diagnosis, recommendations, signature_doc, signature_chief) values ('Ослов И.А.', '16.11.2005', 'д.Ословка', 1, 'Ухо', 'Зимнее обострение', 'стабильное', 'ОРЗ', 0, 0, 0);
+insert into PATIENT_CARD(full_name, dob, home_address, num_site, complaints, anamnesis, conditions, diagnosis, recommendations, signature_doc, signature_chief) values ('Зайцев Н.Н.', '20.10.1999', 'д.Зайцквка', 1, 'ноги', 'Падение с высоты', 'стабильное', 'ожирение', 1, 0, 0);
+insert into PATIENT_CARD(full_name, dob, home_address, num_site, complaints, anamnesis, conditions, diagnosis, recommendations, signature_doc, signature_chief) values ('Мальцев М.М.', '10.05.1991', 'г.Широкий-Лог', 1, 'всё', 'курение', 'стабильное', 'Сахарный диабет', 0, 0, 0);
+insert into PATIENT_CARD(full_name, dob, home_address, num_site, complaints, anamnesis, conditions, diagnosis, recommendations, signature_doc, signature_chief) values ('Дедушкин М.З.', '11.02.1925', 'д.Стариково', 1, 'душа', 'увлечение спортом', 'стабильное', 'шизофрения', 0, 0, 0);
+
+insert into RECIPE(preparation, status, note, card_id) values ('аскорбинка', 0, 'нет', 1);
+insert into RECIPE(preparation, status, note, card_id) values ('витаминка', 0, 'нет', 2);
+insert into RECIPE(preparation, status, note, card_id) values ('активированный уголь', 0, 'нет', 4);

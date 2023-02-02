@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Список карт</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}" src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            fillData();
+        });
+
+        function fillData(page) {
+            $.get('/api/archive_cards' + (page ? '?page=' + page : ''), function (result) {
+                let rowsData = '';
+                for (let i = 0; i < result.data.length; i++) {
+                    let card = result.data[i];
+
+                    rowsData += '<tr><td>' + card.id + '</td>' +
+                        '<td>' + card.numSite + '</td>' +
+                        '<td>' + card.fullName + '</td>' +
+                        '<td>' + card.dob + '</td>' +
+                        '<td>' + card.homeAddress + '</td>' +
+                        '<td>' + card.complaints + '</td>' +
+                        '<td>' + card.anamnesis + '</td>' +
+                        '<td>' + card.conditions + '</td>' +
+                        '<td>' + card.diagnosis + '</td>' +
+                        '<td>' + card.recommendations + '</td>' +
+                        '<td>' + card.signatureDoc + '</td>' +
+                        '<td>' + card.signatureChief + '</td>' +
+                        '</tr>';
+                }
+                let patientCardData = $('#patientCardData');
+                patientCardData.html(rowsData);
+
+
+                $('#navigation').html(
+                    (result.hasPrevious ? ('<a href="javascript:fillData(' + (result.currentPage - 1) + ')">' +
+                        '<img title="Предыдущая страница" src="/images/previous.png"/>' +
+                        '</a>') : '') +
+                    'Текущая страница <span>' + (result.currentPage + 1) + '</span> из <span>' + result.totalPage + '</span>' +
+                    (result.hasNext ? ('<a href="javascript:fillData(' + (result.currentPage + 1) + ')">' +
+                        '<img title="Следующая страница" src="/images/next.png"/>' +
+                        '</a>') : ''));
+            });
+        }
+
+    </script>
+</head>
+<body>
+<div class="loginPanel" sec:authorize="isAuthenticated()">
+    <span class="loginName" sec:authentication="name"></span>
+    <div class="logoutButton">
+        <a th:href="@{/logout}"><img title="Logout" th:src="@{/images/exit.png}"/></a>
+    </div>
+</div>
+<p><strong>Карточки пациентов</strong></p>
+
+<div id="navigation"></div>
+<table class="cards">
+    <thead>
+    <tr>
+        <th>№ карты</th>
+        <th>№ участка</th>
+        <th>Полное имя</th>
+        <th>Дата рождения</th>
+        <th>Домашний адрес</th>
+        <th>Жалобы</th>
+        <th>Анамнез</th>
+        <th>Состояние</th>
+        <th>Диагноз</th>
+        <th>Рекомендации</th>
+        <th>Отметка врача</th>
+        <th>Решение заведующего</th>
+    </tr>
+    </thead>
+    <tbody id="patientCardData"/>
+</table>
+<div id="toolbar">
+    <a th:href="@{/}" href="../index.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
+</div>
+</body>
+<style>
+    body {
+        background: url("https://kartinkin.net/pics/uploads/posts/2022-08/1660251959_4-kartinkin-net-p-fon-dlya-prezentatsii-delovoi-kreativnii-k-4.jpg") no-repeat;
+    }
+</style>
+</html>

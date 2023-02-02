@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Список рецептов</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
+    <script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            fillData();
+        });
+
+        function fillData(page) {
+            $.get('/api/recipes' + (page ? '?page=' + page : ''), function (result) {
+                let rowsData = '';
+                for (let i = 0; i < result.data.length; i++) {
+                    let recipe = result.data[i];
+                    var actionButtonEdit = '';
+                    var actionButtonDelete = '';
+                    if (result.admin || result.chief || result.pharmacy) {
+                        actionButtonEdit =
+                            '<td>' +
+                            '<a href="/recipe/edit?num=' + recipe.num + '"><img title="Edit" src="/images/edit.png"/></a>' +
+                            '</td>'
+                    }
+                    if (result.admin || result.chief) {
+                        actionButtonDelete =
+                            '<td>' +
+                            '<a data-id="recipe_' + recipe.num + '" href="recipe.html"><img title="Delete" src="/images/delete.png"/></a>' +
+                            '</td>'
+                    }
+                    rowsData += '<tr><td>' + recipe.num + '</td>' +
+                            '<td>' + recipe.patientCard.id + '</td>' +
+                            '<td>' + recipe.preparation + '</td>' +
+                            '<td>' + recipe.note + '</td>' +
+                            actionButtonEdit +
+                            actionButtonDelete +
+                            '</tr>';
+
+                }
+                let recipeDataElement = $('#recipeData');
+                recipeDataElement.html(rowsData);
+                if (result.admin || result.chief) {
+                    $('a[data-id^=recipe_]').one('click', function (event) {
+                        if (confirm('Вы уверены в удалении данного рецепта?')) {
+                            let recipeId = $(this).attr('data-id').replace('recipe_', '');
+                            $.ajax({
+                                url: '/api/recipes/' + recipeId,
+                                type: 'DELETE',
+                                success: function () {
+                                    location.href = '/recipes';
+                                },
+                                error: function (jqXHR, exception) {
+                                    if (jqXHR.status === 403) {
+                                        alert('You have no right');
+                                    }
+                                }
+                            });
+                        }
+                        event.preventDefault();
+                    });
+                }
+
+                $('#navigation').html(
+                    (result.hasPrevious ? ('<a href="javascript:fillData(' + (result.currentPage - 1) + ')">' +
+                        '<img title="Предыдущая страница" src="/images/previous.png"/>' +
+                        '</a>') : '') +
+                    'Текущая страница <span>' + (result.currentPage + 1) + '</span> из <span>' + result.totalPage + '</span>' +
+                    (result.hasNext ?  ('<a href="javascript:fillData(' + (result.currentPage + 1) + ')">' +
+                        '<img title="Следующая страница" src="/images/next.png"/>' +
+                        '</a>') : ''));
+            });
+        }
+
+    </script>
+</head>
+<body>
+<div class="loginPanel" sec:authorize="isAuthenticated()">
+    <span class="loginName" sec:authentication="name"></span>
+    <div class="logoutButton">
+        <a th:href="@{/logout}"><img title="Logout" th:src="@{/images/exit.png}"/></a>
+    </div>
+</div>
+<p><strong>Рецепты</strong></p>
+
+<div id="navigation"></div>
+<table class="recipes">
+    <thead>
+    <tr>
+        <th>№ рецепта</th>
+        <th>№ карты</th>
+        <th>Препараты</th>
+        <th>Примечание</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF', 'PHARMACY')">Изменить</th>
+        <th sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF')">Удалить</th>
+    </tr>
+    </thead>
+    <tbody id="recipeData"/>
+</table>
+<div id="toolbar">
+    <a th:href="@{/}" href="../index.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
+</div>
+</body>
+<style>
+    body {
+        background: url("https://kartinkin.net/pics/uploads/posts/2022-08/1660251959_4-kartinkin-net-p-fon-dlya-prezentatsii-delovoi-kreativnii-k-4.jpg") no-repeat;
+    }
+</style>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Работа с картами</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<body>
+<div class="loginPanel" sec:authorize="isAuthenticated()">
+    <span class="loginName" sec:authentication="name"></span>
+    <div class="logoutButton">
+        <a th:href="@{/logout}"><img title="Logout" th:src="@{/images/exit.png}"/></a>
+    </div>
+</div>
+<form id="add-form" sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF', 'REGISTER')" th:action="@{/card/save}" th:if="${patientCard == null}"
+      method="post" action="card.html">
+    <p><strong>Добавление карточки</strong></p>
+
+    <div class="row">
+        <label for="id-input">№ карты</label>
+        <input id="id-input" value="не заполняется" type="text" readonly="readonly"/>
+    </div>
+
+    <div class="row">
+        <label for="name-input">Полное имя</label>
+        <input id="name-input" name="fullName" type="text" required="required" maxlength="250"/>
+    </div>
+
+    <div class="row">
+        <label for="dob-input">Дата рождения</label>
+        <input id="dob-input" name="dob" type="text" required="required" maxlength="10"/>
+    </div>
+
+    <div class="row">
+        <label for="address-input">Домашний адрес</label>
+        <input id="address-input" name="homeAddress" type="text" maxlength="250"/>
+    </div>
+
+    <div class="row">
+        <label for="site-input">№ участка</label>
+        <input id="site-input" name="numSite" type="text" required="required" minlength="1"/>
+    </div>
+
+    <div class="row" type="hidden">
+        <input id="recom-input" type="hidden" name="recommendations" value="NOT_SELECTED"/>
+        <input id="doc-input" type="hidden" name="signatureDoc" value="IN_WORK"/>
+        <input id="chief-input" type="hidden" name="signatureChief" value="NOT_CONSIDERED"/>
+    </div>
+
+    <div class="row">
+        <a th:href="@{/cards}" href="cards.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
+        <button type="submit"><img alt="Save" th:src="@{/images/save.png}"/></button>
+    </div>
+</form>
+
+<form id="edit-form" sec:authorize="hasAnyAuthority('ADMIN', 'CHIEF', 'DOC')" th:action="@{/card/save(id=${patientCard.id})}"
+      th:unless="${patientCard == null}" method="post"  action="card.html" th:object="${patientCard}">
+    <p><strong>Информация о карточке</strong></p>
+
+    <div class="row">
+        <label for="id-edit-input">№ карты</label>
+        <input id="id-edit-input" type="text" th:value="*{id}" readonly="readonly" value="1"/>
+    </div>
+
+    <div class="row">
+        <label for="name-edit-input">Полное имя</label>
+        <input id="name-edit-input" name="fullName" type="text" th:value="*{fullName}" required="required"
+               maxlength="250" value="Art"/>
+    </div>
+
+    <div class="row">
+        <label for="dob-edit-input">Дата рождения</label>
+        <input id="dob-edit-input" name="dob" type="text" th:value="*{dob}" required="required" maxlength="10"
+               value="Art"/>
+    </div>
+
+    <div class="row">
+        <label for="address-edit-input">Домашний адрес</label>
+        <input id="address-edit-input" name="homeAddress" type="text" th:value="*{homeAddress}" maxlength="250"
+               value="Art"/>
+    </div>
+
+    <div class="row">
+        <label for="site-edit-input">№ участка</label>
+        <input id="site-edit-input" name="numSite" type="text" th:value="*{numSite}" required="required" minlength="1"
+               value="Art"/>
+    </div>
+
+    <div class="row">
+        <label for="complaints-edit-input">Жалобы</label>
+        <input id="complaints-edit-input" name="complaints" type="text" th:value="*{complaints}" maxlength="1000"
+               value="Art"/>
+    </div>
+
+    <div class="row">
+        <label for="anamnesis-edit-input">Анамнез</label>
+        <input id="anamnesis-edit-input" name="anamnesis" type="text" th:value="*{anamnesis}" maxlength="1000"
+               value="Art"/>
+    </div>
+
+    <div class="row">
+        <label for="condition-edit-input">Состояние</label>
+        <input id="condition-edit-input" name="conditions" type="text" th:value="*{conditions}" maxlength="1000"
+               value="Art"/>
+    </div>
+
+    <div class="row">
+        <label for="diagnosis-edit-input">Диагноз</label>
+        <input id="diagnosis-edit-input" name="diagnosis" type="text" th:value="*{diagnosis}" maxlength="250"
+               value="Art"/>
+    </div>
+
+    <div class="row">
+        <label for="recom-edit-input">Рекомендации</label>
+        <select id="recom-edit-input" name="recommendations" type="text" th:value="*{recommendations}">
+            <option th:value="*{recommendations}"><span th:text="#{*{recommendations}}"></span></option>
+            <option value="NO_RECOMMENDATIONS">Без дополнительных рекомендаций</option>
+            <option value="TREATMENT_AND_PRESCRIPTION">Лечение (выписка рецепта)</option>
+            <option value="TO_ANOTHER_DOCTOR">Направление к другому врачу</option>
+            <option value="TO_INSPECTION">Направление на экспертизу</option>
+        </select>
+
+        <div class="row1-recipe">
+            <label> Выписка рецепта:</label>
+        </div>
+        <div class="row-recipe" th:object="${recipe}">
+
+            <label for="id-recipe-edit">№ рецепта</label>
+            <input id="id-recipe-edit" name="num" type="text" th:value="*{num}" readonly="readonly"/>
+
+        </div>
+
+        <div class="row-recipe" th:object="${recipe}">
+            <label for="preparation-recipe-edit">Препараты</label>
+            <input id="preparation-recipe-edit" name="preparation" type="text" th:value="*{preparation}"/>
+
+            <label for="note-recipe-edit">Примечание</label>
+            <input id="note-recipe-edit" name="note" type="text" th:value="*{note}" />
+
+            <input id="card-id-edit" name="patientCard.id" type="hidden" th:object="${patientCard}" th:value="*{id}"/>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <label for="doc-edit-input">Отметка врача</label>
+        <select id="doc-edit-input" name="signatureDoc" th:value="*{signatureDoc}">
+            <option th:value="*{signatureDoc}"><span th:text="#{*{signatureDoc}}"></span></option>
+            <option value="IN_WORK">В работе</option>
+            <option value="AGREE">Утверждаю</option>
+            <option value="NO_ACTUAL">Не актуально</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label for="chief-edit-input">Согласование заведующего</label>
+        <select id="chief-edit-input" name="signatureChief" type="text">
+            <option th:value="*{signatureChief}"><span th:text="#{*{signatureChief}}"></span></option>
+            <option value="NOT_CONSIDERED">Не рассмотрено</option>
+            <option value="AGREE">Согласовано</option>
+            <option value="NOT_AGREE">Отклонено</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <a th:href="@{/cards}" href="cards.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
+        <button type="submit"><img alt="Save" th:src="@{/images/save.png}"/></button>
+    </div>
+</form>
+</body>
+<style>
+    body {
+        background: url("https://kartinkin.net/pics/uploads/posts/2022-08/1660251959_4-kartinkin-net-p-fon-dlya-prezentatsii-delovoi-kreativnii-k-4.jpg") no-repeat;
+    }
+</style>
+</html>

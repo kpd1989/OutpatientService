@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Главная страница</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<body>
+<p><strong>Добро пожаловать</strong></p>
+
+<ul>
+    <li><a th:href="@{/recipes}" href="/recipes.html">Рецепты</a></li>
+</ul>
+
+<ul>
+    <li><a th:href="@{/cards}" href="/cards.html">Карточка пациента</a></li>
+</ul>
+
+<ul>
+    <li><a th:href="@{/archive_recipes}" href="/archive_recipes.html">Архив рецептов</a></li>
+</ul>
+
+<ul>
+    <li><a th:href="@{/archive_cards}" href="/archive_cards.html">Архив карточкек пациентов</a></li>
+</ul>
+
+</body>
+<style>
+    body {
+        background: url("https://kartinkin.net/uploads/posts/2022-03/1646709608_54-kartinkin-net-p-kartinki-poliklinika-58.jpg") no-repeat;
+    }
+</style>
+
+</html>
