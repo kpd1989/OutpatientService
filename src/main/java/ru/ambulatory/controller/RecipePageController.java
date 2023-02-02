@@ -34,7 +34,7 @@ public class RecipePageController {
     @GetMapping("/recipe/edit")
     public String currenRecipe(@RequestParam("num") Integer recipeId, Model model) {
         RecipeDto currentRecipe = recipeService.getById(recipeId)
-                .orElseThrow(() -> new IllegalArgumentException("Non existed recipe"));
+                .orElseThrow(() -> new IllegalArgumentException("Non existed recipe with id=" + recipeId));
         model.addAttribute("recipe", currentRecipe);
         return "recipe/recipe";
     }

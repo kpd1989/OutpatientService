@@ -29,19 +29,16 @@ public class PatientCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
-    @Column(name = "full_name", nullable = false)
+    @Column(name = "full_name")
     private String fullName;
 
-    @NotEmpty
-    @Column(name = "dob", nullable = false)
+    @Column(name = "dob")
     private String dob;
 
     @Column(name = "home_address")
     private String homeAddress;
 
-    @NotNull
-    @Column(name = "num_site", nullable = false)
+    @Column(name = "num_site")
     private Integer numSite;
 
     @Column(name = "complaints")
