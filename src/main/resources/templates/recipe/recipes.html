@@ -30,14 +30,15 @@
                             '<a data-id="recipe_' + recipe.num + '" href="recipe.html"><img title="Delete" src="/images/delete.png"/></a>' +
                             '</td>'
                     }
-                    rowsData += '<tr><td>' + recipe.num + '</td>' +
+                    if (result.admin || result.chief || result.pharmacy) {
+                        rowsData += '<tr><td>' + recipe.num + '</td>' +
                             '<td>' + recipe.patientCard.id + '</td>' +
                             '<td>' + recipe.preparation + '</td>' +
                             '<td>' + recipe.note + '</td>' +
                             actionButtonEdit +
                             actionButtonDelete +
                             '</tr>';
-
+                    }
                 }
                 let recipeDataElement = $('#recipeData');
                 recipeDataElement.html(rowsData);
