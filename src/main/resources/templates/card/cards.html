@@ -40,7 +40,7 @@
                             actionButtonDelete +
                             '</tr>';
                     }
-                    if (result.admin || result.doc || result.register) {
+                    if (!result.chief && !result.pharmacy) {
                         rowsData += '<tr><td>' + card.id + '</td>' +
                             '<td>' + card.numSite + '</td>' +
                             '<td>' + card.fullName + '</td>' +
