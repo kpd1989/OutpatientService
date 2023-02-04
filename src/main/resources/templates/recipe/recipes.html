@@ -30,7 +30,7 @@
                             '<a data-id="recipe_' + recipe.num + '" href="recipe.html"><img title="Delete" src="/images/delete.png"/></a>' +
                             '</td>'
                     }
-                    if (result.admin || result.chief || result.pharmacy) {
+                    if ((result.admin || result.chief || result.pharmacy) && recipe.patientCard.signatureChief === 'AGREE'){
                         rowsData += '<tr><td>' + recipe.num + '</td>' +
                             '<td>' + recipe.patientCard.id + '</td>' +
                             '<td>' + recipe.preparation + '</td>' +
